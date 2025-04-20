@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+set -ex
+
+RELEASE_TAG="v$(cat package.json | jq --raw-output .version)"
+
+echo "Deploying ..."
+echo "RELEASE_TAG: ${RELEASE_TAG}"
+echo "release_please reported version: $1"
+echo "release_please reported gh release: $2"

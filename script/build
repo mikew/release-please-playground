@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+set -ex
+
+RELEASE_TAG="v$(cat package.json | jq --raw-output .version)"
+
+echo "Building version ${RELEASE_TAG}"
