@@ -5,5 +5,21 @@ RELEASE_TAG="v$(cat package.json | jq --raw-output .version)"
 
 echo "Deploying ..."
 echo "RELEASE_TAG: ${RELEASE_TAG}"
-echo "release_please reported version: $1"
-echo "release_please reported gh release: $2"
+echo "release_please reported version: ${1}"
+echo "release_please reported gh release: ${2}"
+
+date > timestamp
+
+gh release upload "${2}" timestamp
+
+git add \
+  timestamp
+
+git commit --message "[skip ci] Release ${2}"
+git tag "${2}"
+
+COMMIT_SHA=$(git rev-parse HEAD)
+git push --force origin "${2}"
+git push origin HEAD
+
+gh release edit "--target=${COMMIT_SHA}" "${2}"
