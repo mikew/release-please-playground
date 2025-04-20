@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.0](https://github.com/mikew/release-please-playground/compare/v1.0.1...v1.1.0) (2025-04-20)
+
+
+### Features
+
+* more playground ([#7](https://github.com/mikew/release-please-playground/issues/7)) ([2fd56c7](https://github.com/mikew/release-please-playground/commit/2fd56c7097eb156709602a6011d0628eb30a8b83))
+
 ## [1.0.1](https://github.com/mikew/release-please-playground/compare/v1.0.0...v1.0.1) (2025-04-20)
 
 
