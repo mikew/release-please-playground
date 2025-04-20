@@ -21,6 +21,11 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
+    outputs:
+      release_please_version: ${{ steps.release_please.outputs.version }}
+      release_please_tag_name: ${{ steps.release_please.outputs.tag_name }}
+      release_please_release_created: ${{ steps.release_please.outputs.release_created }}
+
     steps:
       - uses: actions/checkout@v4
 
@@ -45,8 +50,8 @@ jobs:
       - build
 
     steps:
-      - run: ./script/deploy "${{ steps.release_please.outputs.version }}" "${{ steps.release.outputs.tag_name }}"
-        if: ${{ steps.release_please.outputs.release_created }}
+      - run: ./script/deploy "${{ needs.build.outputs.release_please_version }}" "${{ needs.build.outputs.release_please_tag_name }}"
+        if: ${{ needs.build.outputs.release_please_release_created == 'true' }}
         shell: bash
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
