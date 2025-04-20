@@ -50,6 +50,9 @@ jobs:
       - build
 
     steps:
+      - uses: actions/checkout@v4
+        if: ${{ needs.build.outputs.release_please_release_created == 'true' }}
+
       - run: ./script/deploy "${{ needs.build.outputs.release_please_version }}" "${{ needs.build.outputs.release_please_tag_name }}"
         if: ${{ needs.build.outputs.release_please_release_created == 'true' }}
         shell: bash
